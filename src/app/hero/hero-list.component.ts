@@ -20,13 +20,15 @@ export class HeroListComponent implements OnInit {
   selectedHero: Hero;
   title: string;
 
-  constructor(private logger: Logger, private service: HeroService, @Inject(APP_CONFIG) config: AppConfig) {
+  constructor(private logger: Logger, private heroService: HeroService, @Inject(APP_CONFIG) config: AppConfig) {
     this.title = config.title;
   }
   // constructor(private heroServiceProvider: any) { }
 
   ngOnInit() {
-    this.heroes = this.service.getHeroes();
+    // this.heroes = this.heroService.getHeroes();
+    // 使用承诺获取内容
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
   selectHero(hero: Hero) {
