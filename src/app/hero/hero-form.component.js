@@ -13,7 +13,6 @@ var hero_1 = require("./hero");
 var HeroFormComponent = (function () {
     function HeroFormComponent() {
         this.powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
-        this.hero = new hero_1.Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
         this.submitted = false;
     }
     HeroFormComponent.prototype.onSubmit = function () { this.submitted = true; };
@@ -27,7 +26,7 @@ var HeroFormComponent = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", hero_1.Hero)
 ], HeroFormComponent.prototype, "hero", void 0);
 HeroFormComponent = __decorate([
     core_1.Component({

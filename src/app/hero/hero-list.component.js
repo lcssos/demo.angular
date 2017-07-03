@@ -20,14 +20,17 @@ var logger_service_1 = require("../logger.service");
 //  providers:  [ HeroService ]
 // providers: [heroServiceProvider]
 var HeroListComponent = (function () {
-    function HeroListComponent(logger, service, config) {
+    function HeroListComponent(logger, heroService, config) {
         this.logger = logger;
-        this.service = service;
+        this.heroService = heroService;
         this.title = config.title;
     }
     // constructor(private heroServiceProvider: any) { }
     HeroListComponent.prototype.ngOnInit = function () {
-        this.heroes = this.service.getHeroes();
+        var _this = this;
+        // this.heroes = this.heroService.getHeroes();
+        // 使用承诺获取内容
+        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
     };
     HeroListComponent.prototype.selectHero = function (hero) {
         this.selectedHero = hero;

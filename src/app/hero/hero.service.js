@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var logger_service_1 = require("../logger.service");
-var hero_1 = require("./hero");
 var core_1 = require("@angular/core");
+var mock_heroes_1 = require("./mock-heroes");
 // 构造函数注入
 var HeroService = (function () {
     function HeroService(
@@ -20,6 +20,7 @@ var HeroService = (function () {
         this.isAuthorized = isAuthorized;
         this.heroes = [];
     }
+    // 为实现异步，需使用承诺（Promise）
     HeroService.prototype.getHeroes = function () {
         // this.backend.getAll(Hero).then( (heroes: Hero[]) => {
         //   this.logger.log(`Fetched ${heroes.length} heroes.`);
@@ -28,13 +29,15 @@ var HeroService = (function () {
         var auth = this.isAuthorized ? 'authorized ' : 'unauthorized';
         this.logger.log("Getting heroes for " + auth + " user.");
         // this.logger.log('getting heros...');
-        this.heroes = [
-            new hero_1.Hero(1, 'Windstorm'),
-            new hero_1.Hero(13, 'Bombasto'),
-            new hero_1.Hero(15, 'Magneta'),
-            new hero_1.Hero(20, 'Tornado')
-        ];
-        return this.heroes;
+        this.heroes = mock_heroes_1.HEROES;
+        return Promise.resolve(mock_heroes_1.HEROES);
+    };
+    HeroService.prototype.getHeroesSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            // Simulate server latency with 2 second delay
+            setTimeout(function () { return resolve(_this.getHeroes()); }, 2000);
+        });
     };
     return HeroService;
 }());
