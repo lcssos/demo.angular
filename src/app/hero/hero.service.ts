@@ -1,6 +1,7 @@
 import {Logger} from '../logger.service';
 import {Hero} from './hero';
 import {Injectable} from '@angular/core';
+import {HEROES} from './mock-heroes';
 
 // 构造函数注入
 @Injectable()
@@ -13,7 +14,8 @@ export class HeroService {
     private isAuthorized: boolean
   ) { }
 
-  getHeroes() {
+  // 为实现异步，需使用承诺（Promise）
+  getHeroes(): Promise<Hero[]> {
     // this.backend.getAll(Hero).then( (heroes: Hero[]) => {
     //   this.logger.log(`Fetched ${heroes.length} heroes.`);
     //   this.heroes.push(...heroes); // fill cache
@@ -21,12 +23,14 @@ export class HeroService {
     let auth = this.isAuthorized ? 'authorized ' : 'unauthorized';
     this.logger.log(`Getting heroes for ${auth} user.`);
     // this.logger.log('getting heros...');
-    this.heroes = [
-      new Hero(1, 'Windstorm'),
-      new Hero(13, 'Bombasto'),
-      new Hero(15, 'Magneta'),
-      new Hero(20, 'Tornado')
-    ];
-    return this.heroes;
+    this.heroes = HEROES;
+    return Promise.resolve(HEROES);
+  }
+
+  getHeroesSlowly(): Promise<Hero[]> {
+    return new Promise(resolve => {
+      // Simulate server latency with 2 second delay
+      setTimeout(() => resolve(this.getHeroes()), 2000);
+    });
   }
 }
