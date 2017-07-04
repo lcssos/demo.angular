@@ -5,6 +5,7 @@ import {heroServiceProvider} from './hero.service.provider';
 import {UserService} from '../user/user.service';
 import {APP_CONFIG, AppConfig, HERO_DI_CONFIG} from '../app-config';
 import {Logger} from '../logger.service';
+import {Router} from "@angular/router";
 
 //  providers:  [ HeroService ]
 // providers: [heroServiceProvider]
@@ -20,7 +21,7 @@ export class HeroListComponent implements OnInit {
   selectedHero: Hero;
   title: string;
 
-  constructor(private logger: Logger, private heroService: HeroService, @Inject(APP_CONFIG) config: AppConfig) {
+  constructor(private logger: Logger, private router: Router, private heroService: HeroService, @Inject(APP_CONFIG) config: AppConfig) {
     this.title = config.title;
   }
   // constructor(private heroServiceProvider: any) { }
@@ -35,4 +36,9 @@ export class HeroListComponent implements OnInit {
     this.selectedHero = hero;
     this.logger.log(hero);
   }
+
+  gotoDetail(): void {
+    this.router.navigate(['/hero', this.selectedHero.id]);
+  }
+
 }

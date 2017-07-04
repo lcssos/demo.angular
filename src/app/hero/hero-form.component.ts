@@ -11,6 +11,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'hero-form',
   templateUrl: './hero-form.component.html',
+    styleUrls: [ './hero-form.component.css' ],
     providers: [heroServiceProvider, UserService]
 })
 export class HeroFormComponent implements OnInit {

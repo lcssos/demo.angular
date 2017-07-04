@@ -12,4 +12,11 @@
 <!--<hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>-->
 {{selectedHero | json}}
 
+<div *ngIf="selectedHero">
+    <h2>
+        {{selectedHero.name | uppercase}} is my hero
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>
+
 <hero-form *ngIf="selectedHero" [hero]="selectedHero"></hero-form>

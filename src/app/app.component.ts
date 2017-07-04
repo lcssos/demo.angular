@@ -17,6 +17,7 @@ import {Hero} from './hero/hero';
 // template: `<hero-list></hero-list>`
 @Component({
   selector: 'my-app',
+    styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
 })
 export class AppComponent  {
