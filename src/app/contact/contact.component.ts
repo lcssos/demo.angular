@@ -9,7 +9,7 @@ import { Contact, ContactService } from './contact.service';
 export class ContactComponent implements OnInit {
     contact:  Contact;
     contacts: Contact[];
-    msg = 'Loading contacts ...';
+    msg = '正在加载联系人 ...';
     userName = '';
     constructor(private contactService: ContactService) {
         this.userName = '';
