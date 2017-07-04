@@ -17,9 +17,10 @@ import {HeroSearchComponent} from "./hero/hero-search.component";
 import {HighlightDirective} from "./attribute-directives/highlight.directive";
 import {requestOptionsProvider} from "./default-request-options.service";
 import {ContactModule} from "./contact/contact.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpModule, AppRoutingModule, InMemoryWebApiModule.forRoot(InMemoryDataService), ContactModule ],
+  imports:      [ BrowserModule, FormsModule, HttpModule, AppRoutingModule, InMemoryWebApiModule.forRoot(InMemoryDataService), CoreModule, ContactModule ],
   declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent, HeroSearchComponent, HighlightDirective ],
   providers:    [ Logger, requestOptionsProvider ],
   bootstrap:    [ AppComponent ]

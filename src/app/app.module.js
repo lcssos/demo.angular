@@ -23,6 +23,7 @@ var hero_search_component_1 = require("./hero/hero-search.component");
 var highlight_directive_1 = require("./attribute-directives/highlight.directive");
 var default_request_options_service_1 = require("./default-request-options.service");
 var contact_module_1 = require("./contact/contact.module");
+var core_module_1 = require("./core/core.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,7 +31,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule, angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService), contact_module_1.ContactModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule, angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService), core_module_1.CoreModule, contact_module_1.ContactModule],
         declarations: [app_component_1.AppComponent, hero_form_component_1.HeroFormComponent, hero_list_component_1.HeroListComponent, dashboard_component_1.DashboardComponent, hero_search_component_1.HeroSearchComponent, highlight_directive_1.HighlightDirective],
         providers: [logger_service_1.Logger, default_request_options_service_1.requestOptionsProvider],
         bootstrap: [app_component_1.AppComponent]
