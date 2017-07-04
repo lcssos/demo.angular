@@ -1,6 +1,8 @@
 <h2>Hero List {{title}}</h2>
 <p><i>Pick a hero from the list</i></p>
 <ul class="heroes">
+    <!--[@heroState]="hero.state"-->
+    <!--(click)="hero.toggleState()"-->
   <li *ngFor="let hero of heroes" (click)="selectHero(hero)" [class.selected]="hero === selectedHero">
     <span class="badge">{{hero.id}}</span>
       {{hero.name}}

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Input} from '@angular/core';
 import {HeroService} from './hero.service';
 import {Hero} from './hero';
 import {heroServiceProvider} from './hero.service.provider';
@@ -7,13 +7,31 @@ import {APP_CONFIG, AppConfig, HERO_DI_CONFIG} from '../app-config';
 import {Logger} from '../logger.service';
 import {Router} from "@angular/router";
 
+import {trigger, state, style, animate, transition} from '@angular/animations';
+
+
 //  providers:  [ HeroService ]
 // providers: [heroServiceProvider]
 @Component({
     selector: 'hero-list',
     templateUrl: './hero-list.component.html',
     styleUrls: ['./hero-list.component.css'],
-    providers: [heroServiceProvider, UserService, {provide: APP_CONFIG, useValue: HERO_DI_CONFIG}]
+    providers: [heroServiceProvider, UserService, {provide: APP_CONFIG, useValue: HERO_DI_CONFIG}],
+    // animations: [
+    //     trigger('heroState', [
+    //         state('inactive', style({
+    //             backgroundColor: '#eee',
+    //             transform: 'scale(1)'
+    //         })),
+    //         state('active',   style({
+    //             backgroundColor: '#cfd8dc',
+    //             transform: 'scale(1.1)'
+    //         })),
+    //         transition('inactive => active', animate('100ms ease-in')),
+    //         transition('active => inactive', animate('100ms ease-out'))
+    //     ])
+    // ]
+
 })
 
 export class HeroListComponent implements OnInit {
@@ -63,5 +81,7 @@ export class HeroListComponent implements OnInit {
                 if (this.selectedHero === hero) { this.selectedHero = null; }
             });
     }
+
+
 
 }
