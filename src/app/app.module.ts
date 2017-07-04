@@ -14,10 +14,11 @@ import {HttpModule} from "@angular/http";
 import {InMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./in-memory-data.service";
 import {HeroSearchComponent} from "./hero/hero-search.component";
+import {HighlightDirective} from "./attribute-directives/highlight.directive";
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, AppRoutingModule, InMemoryWebApiModule.forRoot(InMemoryDataService) ],
-  declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent, HeroSearchComponent ],
+  declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent, HeroSearchComponent, HighlightDirective ],
   providers:    [ Logger ],
   bootstrap:    [ AppComponent ]
 })
