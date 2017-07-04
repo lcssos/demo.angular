@@ -32,15 +32,24 @@ var HeroFormComponent = (function () {
             .subscribe(function (hero) { return _this.hero = hero; });
         // this.heroService.getHero(0).then(hero => this.hero = hero);
     };
-    HeroFormComponent.prototype.onSubmit = function () { this.submitted = true; };
+    HeroFormComponent.prototype.onSubmit = function () {
+        this.submitted = true;
+    };
     Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
         // TODO: Remove this when we're done
-        get: function () { return JSON.stringify(this.hero); },
+        get: function () {
+            return JSON.stringify(this.hero);
+        },
         enumerable: true,
         configurable: true
     });
     HeroFormComponent.prototype.goBack = function () {
         this.location.back();
+    };
+    HeroFormComponent.prototype.save = function () {
+        var _this = this;
+        this.heroService.update(this.hero)
+            .then(function () { return _this.goBack(); });
     };
     return HeroFormComponent;
 }());
@@ -52,6 +61,7 @@ HeroFormComponent = __decorate([
     core_1.Component({
         selector: 'hero-form',
         templateUrl: './hero-form.component.html',
+        styleUrls: ['./hero-form.component.css'],
         providers: [hero_service_provider_1.heroServiceProvider, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [hero_service_1.HeroService, router_1.ActivatedRoute, common_1.Location])
