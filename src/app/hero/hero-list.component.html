@@ -2,9 +2,13 @@
 <p><i>Pick a hero from the list</i></p>
 <ul class="heroes">
   <li *ngFor="let hero of heroes" (click)="selectHero(hero)" [class.selected]="hero === selectedHero">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <span class="badge">{{hero.id}}</span>
+      {{hero.name}}
   </li>
 </ul>
+
+<a *ngFor="let hero of heroes"  [routerLink]="['/hero', hero.id]"  class="col-1-4">{{hero.name}} </a>
+<br/>
 <!--<hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>-->
 {{selectedHero | json}}
 

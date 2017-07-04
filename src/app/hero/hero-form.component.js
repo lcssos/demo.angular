@@ -10,11 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var hero_1 = require("./hero");
+var router_1 = require("@angular/router");
+var hero_service_provider_1 = require("./hero.service.provider");
+var hero_service_1 = require("./hero.service");
+var common_1 = require("@angular/common");
+var user_service_1 = require("../user/user.service");
+require("rxjs/add/operator/switchMap");
 var HeroFormComponent = (function () {
-    function HeroFormComponent() {
-        this.powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
+    // @Input() hero = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
+    function HeroFormComponent(heroService, route, location) {
+        this.heroService = heroService;
+        this.route = route;
+        this.location = location;
         this.submitted = false;
+        this.powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
     }
+    HeroFormComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) { return _this.heroService.getHero(+params['id']); })
+            .subscribe(function (hero) { return _this.hero = hero; });
+        // this.heroService.getHero(0).then(hero => this.hero = hero);
+    };
     HeroFormComponent.prototype.onSubmit = function () { this.submitted = true; };
     Object.defineProperty(HeroFormComponent.prototype, "diagnostic", {
         // TODO: Remove this when we're done
@@ -22,6 +39,9 @@ var HeroFormComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    HeroFormComponent.prototype.goBack = function () {
+        this.location.back();
+    };
     return HeroFormComponent;
 }());
 __decorate([
@@ -31,8 +51,10 @@ __decorate([
 HeroFormComponent = __decorate([
     core_1.Component({
         selector: 'hero-form',
-        templateUrl: './hero-form.component.html'
-    })
+        templateUrl: './hero-form.component.html',
+        providers: [hero_service_provider_1.heroServiceProvider, user_service_1.UserService]
+    }),
+    __metadata("design:paramtypes", [hero_service_1.HeroService, router_1.ActivatedRoute, common_1.Location])
 ], HeroFormComponent);
 exports.HeroFormComponent = HeroFormComponent;
 //# sourceMappingURL=hero-form.component.js.map

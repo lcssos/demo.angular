@@ -13,7 +13,8 @@ var app_component_1 = require("./app.component");
 var hero_form_component_1 = require("./hero/hero-form.component");
 var logger_service_1 = require("./logger.service");
 var hero_list_component_1 = require("./hero/hero-list.component");
-// import {HeroService} from '../hero/hero.service';
+var dashboard_component_1 = require("./dashboard/dashboard.component");
+var app_routing_module_1 = require("./app-routing.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,8 +22,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent, hero_form_component_1.HeroFormComponent, hero_list_component_1.HeroListComponent],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_module_1.AppRoutingModule],
+        declarations: [app_component_1.AppComponent, hero_form_component_1.HeroFormComponent, hero_list_component_1.HeroListComponent, dashboard_component_1.DashboardComponent],
         providers: [logger_service_1.Logger],
         bootstrap: [app_component_1.AppComponent]
     })

@@ -6,7 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var hero_1 = require("./hero/hero");
 //   template: `<h1>Hello {{name}}</h1>
 //   <h1>{{title}}</h1>
 // <h2>My favorite hero is: {{myHero.name}}</h2>
@@ -20,16 +19,17 @@ var hero_1 = require("./hero/hero");
 //   `,
 //   templateUrl: './app.component.html'
 // template: `<hero-form></hero-form>`,
+// template: `<hero-list></hero-list>`
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Tour of Heroes';
-        this.heroes = [
-            new hero_1.Hero(1, 'Windstorm'),
-            new hero_1.Hero(13, 'Bombasto'),
-            new hero_1.Hero(15, 'Magneta'),
-            new hero_1.Hero(20, 'Tornado')
-        ];
-        this.myHero = this.heroes[0];
+        // heroes = [
+        //   new Hero(1, 'Windstorm'),
+        //   new Hero(13, 'Bombasto'),
+        //   new Hero(15, 'Magneta'),
+        //   new Hero(20, 'Tornado')
+        // ];
+        // myHero = this.heroes[0];
         this.name = 'Angular2';
     }
     return AppComponent;
@@ -37,7 +37,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<hero-list></hero-list>"
+        templateUrl: './app.component.html'
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Hero Form</h1>
-  <form #heroForm="ngForm">
+  <form #heroForm="ngForm" *ngIf="hero">
     {{diagnostic}}
     <div class="form-group">
       <label for="name">Name</label>
@@ -26,5 +26,6 @@
 
 
     <button type="submit" class="btn btn-success">Submit</button>
+    <button (click)="goBack()">Back</button>
   </form>
 </div>

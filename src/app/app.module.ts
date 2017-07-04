@@ -7,12 +7,14 @@ import { AppComponent }  from './app.component';
 import { HeroFormComponent } from './hero/hero-form.component';
 import {Logger} from './logger.service';
 import {HeroListComponent} from './hero/hero-list.component';
-// import {HeroService} from '../hero/hero.service';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HeroFormComponent, HeroListComponent ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
+  declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent ],
   providers:    [ Logger ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
+

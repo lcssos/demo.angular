@@ -14,18 +14,19 @@ import {Hero} from './hero/hero';
 //   `,
 //   templateUrl: './app.component.html'
 // template: `<hero-form></hero-form>`,
+// template: `<hero-list></hero-list>`
 @Component({
   selector: 'my-app',
-  template: `<hero-list></hero-list>`
+  templateUrl: './app.component.html'
 })
 export class AppComponent  {
   title = 'Tour of Heroes';
-  heroes = [
-    new Hero(1, 'Windstorm'),
-    new Hero(13, 'Bombasto'),
-    new Hero(15, 'Magneta'),
-    new Hero(20, 'Tornado')
-  ];
-  myHero = this.heroes[0];
+  // heroes = [
+  //   new Hero(1, 'Windstorm'),
+  //   new Hero(13, 'Bombasto'),
+  //   new Hero(15, 'Magneta'),
+  //   new Hero(20, 'Tornado')
+  // ];
+  // myHero = this.heroes[0];
   name = 'Angular2';
 }
