@@ -14,6 +14,9 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 var mock_heroes_1 = require("./mock-heroes");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/catch");
+require("rxjs/add/operator/map");
 // 构造函数注入
 var HeroService = (function () {
     function HeroService(// private backend: BackendService,
@@ -44,6 +47,28 @@ var HeroService = (function () {
     HeroService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
+    };
+    HeroService.prototype.getHeroes2 = function () {
+        return this.http.get(this.heroesUrl)
+            .map(this.extractData2)
+            .catch(this.handleError2);
+    };
+    HeroService.prototype.extractData2 = function (res) {
+        var body = res.json();
+        return body.data || {};
+    };
+    HeroService.prototype.handleError2 = function (error) {
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable_1.Observable.throw(errMsg);
     };
     // 为实现异步，需使用承诺（Promise）
     // getHeroes(): Promise<Hero[]> {
@@ -81,6 +106,13 @@ var HeroService = (function () {
             .toPromise()
             .then(function (res) { return res.json().data; })
             .catch(this.handleError);
+    };
+    HeroService.prototype.create2 = function (name) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.heroesUrl, { name: name }, options)
+            .map(this.extractData2)
+            .catch(this.handleError2);
     };
     HeroService.prototype.delete = function (id) {
         var url = this.heroesUrl + "/" + id;

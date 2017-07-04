@@ -39,6 +39,8 @@ export class HeroListComponent implements OnInit {
     selectedHero: Hero;
     title: string;
 
+    errorMessage: string;
+
     constructor(private logger: Logger, private router: Router, private heroService: HeroService, @Inject(APP_CONFIG) config: AppConfig) {
         this.title = config.title;
     }
@@ -49,6 +51,13 @@ export class HeroListComponent implements OnInit {
         // this.heroes = this.heroService.getHeroes();
         // 使用承诺获取内容
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+
+    getHeroes2() {
+        this.heroService.getHeroes2()
+            .subscribe(
+                heroes => this.heroes = heroes,
+                error =>  this.errorMessage = <any>error);
     }
 
     selectHero(hero: Hero) {
@@ -71,6 +80,13 @@ export class HeroListComponent implements OnInit {
                 this.heroes.push(hero);
                 this.selectedHero = null;
             });
+    }
+    add2(name: string) {
+        if (!name) { return; }
+        this.heroService.create2(name)
+            .subscribe(
+                hero  => this.heroes.push(hero),
+                error =>  this.errorMessage = <any>error);
     }
 
     delete(hero: Hero): void {

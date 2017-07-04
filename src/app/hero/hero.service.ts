@@ -2,10 +2,13 @@ import {Logger} from '../logger.service';
 import {Hero} from './hero';
 import {Injectable} from '@angular/core';
 // import {HEROES} from './mock-heroes';
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {HEROES} from "./mock-heroes";
-import {logging} from "selenium-webdriver";
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 // 构造函数注入
 @Injectable()
@@ -22,6 +25,8 @@ export class HeroService {
     private heroesUrl = 'api/heroes';  // URL to web api
     // constructor(private http: Http) { }
 
+
+
     getHeroes(): Promise<Hero[]> {
         // return this.http.get(this.heroesUrl)
         //     .toPromise()
@@ -34,6 +39,32 @@ export class HeroService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
+
+
+
+    getHeroes2(): Observable<Hero[]> {
+        return this.http.get(this.heroesUrl)
+            .map(this.extractData2)
+            .catch(this.handleError2);
+    }
+    private extractData2(res: Response) {
+        let body = res.json();
+        return body.data || { };
+    }
+    private handleError2 (error: Response | any) {
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable.throw(errMsg);
+    }
+
+
 
     // 为实现异步，需使用承诺（Promise）
     // getHeroes(): Promise<Hero[]> {
@@ -87,6 +118,14 @@ export class HeroService {
             .toPromise()
             .then(res => res.json().data as Hero)
             .catch(this.handleError);
+    }
+
+    create2(name: string): Observable<Hero> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.heroesUrl, { name }, options)
+            .map(this.extractData2)
+            .catch(this.handleError2);
     }
 
     delete(id: number): Promise<void> {
