@@ -64,3 +64,6 @@ src/app/*.js
 src/app/*.js.map
 src/app/**/*.js
 src/app/**/*.js.map
+src/app/app.module.js
+src/app/app.module.js.map
+

@@ -1,8 +1,8 @@
 import {
-    ModuleWithProviders, NgModule,
+    NgModule,
     Optional, SkipSelf }       from '@angular/core';
 import { CommonModule }      from '@angular/common';
-import {UserService} from "../user/user.service";
+import {UserService} from '../user/user.service';
 @NgModule({
     imports:      [ CommonModule ],
     declarations: [  ],

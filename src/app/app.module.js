@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 ///<reference path="./hero/hero.service.ts"/>
+///<reference path="../../node_modules/angular-in-memory-web-api/in-memory-web-api.module.d.ts"/>
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
@@ -24,6 +25,7 @@ var highlight_directive_1 = require("./attribute-directives/highlight.directive"
 var default_request_options_service_1 = require("./default-request-options.service");
 var contact_module_1 = require("./contact/contact.module");
 var core_module_1 = require("./core/core.module");
+var crisis_center_module_1 = require("./crisis-center/crisis-center.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,7 +33,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule, angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService), core_module_1.CoreModule, contact_module_1.ContactModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule,
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService), core_module_1.CoreModule, contact_module_1.ContactModule, crisis_center_module_1.CrisisCenterModule],
         declarations: [app_component_1.AppComponent, hero_form_component_1.HeroFormComponent, hero_list_component_1.HeroListComponent, dashboard_component_1.DashboardComponent, hero_search_component_1.HeroSearchComponent, highlight_directive_1.HighlightDirective],
         providers: [logger_service_1.Logger, default_request_options_service_1.requestOptionsProvider],
         bootstrap: [app_component_1.AppComponent]
