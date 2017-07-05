@@ -20,11 +20,12 @@ import {requestOptionsProvider} from './default-request-options.service';
 import {ContactModule} from './contact/contact.module';
 import {CoreModule} from './core/core.module';
 import {CrisisCenterModule} from './crisis-center/crisis-center.module';
+import {ComposeMessageComponent} from "./message/compose-message.component";
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpModule, AppRoutingModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService), CoreModule, ContactModule, CrisisCenterModule ],
-  declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent, HeroSearchComponent, HighlightDirective ],
+  declarations: [ AppComponent, HeroFormComponent, HeroListComponent, DashboardComponent, HeroSearchComponent, HighlightDirective,ComposeMessageComponent ],
   providers:    [ Logger, requestOptionsProvider ],
   bootstrap:    [ AppComponent ]
 })
